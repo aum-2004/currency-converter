@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CCGUI">
+  <grid id="27dc6" binding="CC" layout-manager="GridLayoutManager" row-count="12" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="30" left="30" bottom="10" right="30"/>
+    <constraints>
+      <xy x="20" y="20" width="1313" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-16777216"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="6fa4f" class="javax.swing.JLabel" binding="amtlabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <foreground color="-1"/>
+          <text value="Enter Amount to be Converted:- "/>
+        </properties>
+      </component>
+      <component id="cecaa" class="javax.swing.JLabel" binding="fromlabel">
+        <constraints>
+          <grid row="4" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <foreground color="-1"/>
+          <text value="FROM which Currency you want to Convert:- "/>
+        </properties>
+      </component>
+      <component id="ea15c" class="javax.swing.JLabel" binding="tolabel">
+        <constraints>
+          <grid row="8" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <foreground color="-1"/>
+          <text value="TO which Currency you want to Convert:- "/>
+        </properties>
+      </component>
+      <component id="22654" class="javax.swing.JTextField" binding="amount">
+        <constraints>
+          <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="12e42" class="javax.swing.JComboBox" binding="fromcomboBox">
+        <constraints>
+          <grid row="6" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-3054"/>
+          <model>
+            <item value="[PLEASE SELECT FROM CURRENCY...]"/>
+            <item value="AED :  United Arab Emirates Dirham"/>
+            <item value="AFN :  Afghan Afghani"/>
+            <item value="ALL :  Albanian Lek"/>
+            <item value="AMD :  Armenian Dram"/>
+            <item value="ANG :  Netherlands Antillean Guilder"/>
+            <item value="AOA :  Angolan Kwanza"/>
+            <item value="ARS :  Argentine Peso"/>
+            <item value="AUD :  Australian Dollar"/>
+            <item value="AWG :  Aruban Florin"/>
+            <item value="AZN :  Azerbaijani Manat"/>
+            <item value="BAM :  Bosnia-Herzegovina Convertible Mark    BBD :  Barbadian Dollar"/>
+            <item value="BDT :  Bangladeshi Taka"/>
+            <item value="BGN :  Bulgarian Lev"/>
+            <item value="BHD :  Bahraini Dinar"/>
+            <item value="BIF :  Burundian Franc"/>
+            <item value="BMD :  Bermudan Dollar"/>
+            <item value="BND :  Brunei Dollar"/>
+            <item value="BOB :  Bolivian Boliviano"/>
+            <item value="BRL :  Brazilian Real"/>
+            <item value="BSD :  Bahamian Dollar"/>
+            <item value="BTC :  Bitcoin"/>
+            <item value="BTN :  Bhutanese Ngultrum"/>
+            <item value="BWP :  Botswanan Pula"/>
+            <item value="BYN :  New Belarusian Ruble"/>
+            <item value="BYR :  Belarusian Ruble"/>
+            <item value="BZD :  Belize Dollar"/>
+            <item value="CAD :  Canadian Dollar"/>
+            <item value="CDF :  Congolese Franc"/>
+            <item value="CHF :  Swiss Franc"/>
+            <item value="CLF :  Chilean Unit of Account (UF)"/>
+            <item value="CLP :  Chilean Peso"/>
+            <item value="CNY :  Chinese Yuan"/>
+            <item value="COP :  Colombian Peso"/>
+            <item value="CRC :  Costa Rican Col\u00f3n"/>
+            <item value="CUC :  Cuban Convertible Peso"/>
+            <item value="CUP :  Cuban Peso"/>
+            <item value="CVE :  Cape Verdean Escudo"/>
+            <item value="CZK :  Czech Republic Koruna"/>
+            <item value="DJF :  Djiboutian Franc"/>
+            <item value="DKK :  Danish Krone"/>
+            <item value="DOP :  Dominican Peso"/>
+            <item value="DZD :  Algerian Dinar"/>
+            <item value="EGP :  Egyptian Pound"/>
+            <item value="ERN :  Eritrean Nakfa"/>
+            <item value="ETB :  Ethiopian Birr"/>
+            <item value="EUR :  Euro"/>
+            <item value="FJD :  Fijian Dollar"/>
+            <item value="FKP :  Falkland Islands Pound"/>
+            <item value="GBP :  British Pound Sterling"/>
+            <item value="GEL :  Georgian Lari"/>
+            <item value="GGP :  Guernsey Pound"/>
+            <item value="GHS :  Ghanaian Cedi"/>
+            <item value="GIP :  Gibraltar Pound"/>
+            <item value="GMD :  Gambian Dalasi"/>
+            <item value="GNF :  Guinean Franc"/>
+            <item value="GTQ :  Guatemalan Quetzal"/>
+            <item value="GYD :  Guyanaese Dollar"/>
+            <item value="HKD :  Hong Kong Dollar"/>
+            <item value="HNL :  Honduran Lempira"/>
+            <item value="HRK :  Croatian Kuna"/>
+            <item value="HTG :  Haitian Gourde"/>
+            <item value="HUF :  Hungarian Forint"/>
+            <item value="IDR :  Indonesian Rupiah"/>
+            <item value="ILS :  Israeli New Sheqel"/>
+            <item value="IMP :  Manx pound"/>
+            <item value="INR :  Indian Rupee"/>
+            <item value="IQD :  Iraqi Dinar"/>
+            <item value="IRR :  Iranian Rial"/>
+            <item value="ISK :  Icelandic Kr\u00f3na"/>
+            <item value="JEP :  Jersey Pound"/>
+            <item value="JMD :  Jamaican Dollar"/>
+            <item value="JOD :  Jordanian Dinar"/>
+            <item value="JPY :  Japanese Yen"/>
+            <item value="KES :  Kenyan Shilling"/>
+            <item value="KGS :  Kyrgystani Som"/>
+            <item value="KHR :  Cambodian Riel"/>
+            <item value="KMF :  Comorian Franc"/>
+            <item value="KPW :  North Korean Won"/>
+            <item value="KRW :  South Korean Won"/>
+            <item value="KWD :  Kuwaiti Dinar"/>
+            <item value="KYD :  Cayman Islands Dollar"/>
+            <item value="KZT :  Kazakhstani Tenge"/>
+            <item value="LAK :  Laotian Kip"/>
+            <item value="LBP :  Lebanese Pound"/>
+            <item value="LKR :  Sri Lankan Rupee"/>
+            <item value="LRD :  Liberian Dollar"/>
+            <item value="LSL :  Lesotho Loti"/>
+            <item value="LTL :  Lithuanian Litas"/>
+            <item value="LVL :  Latvian Lats"/>
+            <item value="LYD :  Libyan Dinar"/>
+            <item value="MAD :  Moroccan Dirham"/>
+            <item value="MDL :  Moldovan Leu"/>
+            <item value="MGA :  Malagasy Ariary"/>
+            <item value="MKD :  Macedonian Denar"/>
+            <item value="MMK :  Myanma Kyat"/>
+            <item value="MNT :  Mongolian Tugrik"/>
+            <item value="MOP :  Macanese Pataca"/>
+            <item value="MRO :  Mauritanian Ouguiya"/>
+            <item value="MUR :  Mauritian Rupee"/>
+            <item value="MVR :  Maldivian Rufiyaa"/>
+            <item value="MWK :  Malawian Kwacha"/>
+            <item value="MXN :  Mexican Peso"/>
+            <item value="MYR :  Malaysian Ringgit"/>
+            <item value="MZN :  Mozambican Metical"/>
+            <item value="NAD :  Namibian Dollar"/>
+            <item value="NGN :  Nigerian Naira"/>
+            <item value="NIO :  Nicaraguan C\u00f3rdoba"/>
+            <item value="NOK :  Norwegian Krone"/>
+            <item value="NPR :  Nepalese Rupee"/>
+            <item value="NZD :  New Zealand Dollar"/>
+            <item value="OMR :  Omani Rial"/>
+            <item value="PAB :  Panamanian Balboa"/>
+            <item value="PEN :  Peruvian Nuevo Sol"/>
+            <item value="PGK :  Papua New Guinean Kina"/>
+            <item value="PHP :  Philippine Peso"/>
+            <item value="PKR :  Pakistani Rupee"/>
+            <item value="PLN :  Polish Zloty"/>
+            <item value="PYG :  Paraguayan Guarani"/>
+            <item value="QAR :  Qatari Rial"/>
+            <item value="RON :  Romanian Leu"/>
+            <item value="RSD :  Serbian Dinar"/>
+            <item value="RUB :  Russian Ruble"/>
+            <item value="RWF :  Rwandan Franc"/>
+            <item value="SAR :  Saudi Riyal"/>
+            <item value="SBD :  Solomon Islands Dollar"/>
+            <item value="SCR :  Seychellois Rupee"/>
+            <item value="SDG :  Sudanese Pound"/>
+            <item value="SEK :  Swedish Krona"/>
+            <item value="SGD :  Singapore Dollar"/>
+            <item value="SHP :  Saint Helena Pound"/>
+            <item value="SLE :  Sierra Leonean Leone"/>
+            <item value="SLL :  Sierra Leonean Leone"/>
+            <item value="SOS :  Somali Shilling"/>
+            <item value="SRD :  Surinamese Dollar"/>
+            <item value="STD :  S\u00e3o Tom\u00e9 and Pr\u00edncipe Dobra"/>
+            <item value="SVC :  Salvadoran Col\u00f3n"/>
+            <item value="SYP :  Syrian Pound"/>
+            <item value="SZL :  Swazi Lilangeni"/>
+            <item value="THB :  Thai Baht"/>
+            <item value="TJS :  Tajikistani Somoni"/>
+            <item value="TMT :  Turkmenistani Manat"/>
+            <item value="TND :  Tunisian Dinar"/>
+            <item value="TOP :  Tongan Pa\u02bbanga"/>
+            <item value="TRY :  Turkish Lira"/>
+            <item value="TTD :  Trinidad and Tobago Dollar"/>
+            <item value="TWD :  New Taiwan Dollar"/>
+            <item value="TZS :  Tanzanian Shilling"/>
+            <item value="UAH :  Ukrainian Hryvnia"/>
+            <item value="UGX :  Ugandan Shilling"/>
+            <item value="USD :  United States Dollar"/>
+            <item value="UYU :  Uruguayan Peso"/>
+            <item value="UZS :  Uzbekistan Som"/>
+            <item value="VEF :  Venezuelan Bol\u00edvar Fuerte"/>
+            <item value="VES :  Sovereign Bolivar"/>
+            <item value="VND :  Vietnamese Dong"/>
+            <item value="VUV :  Vanuatu Vatu"/>
+            <item value="WST :  Samoan Tala"/>
+            <item value="XAF :  CFA Franc BEAC"/>
+            <item value="XAG :  Silver (troy ounce)"/>
+            <item value="XAU :  Gold (troy ounce)"/>
+            <item value="XCD :  East Caribbean Dollar"/>
+            <item value="XDR :  Special Drawing Rights"/>
+            <item value="XOF :  CFA Franc BCEAO"/>
+            <item value="XPF :  CFP Franc"/>
+            <item value="YER :  Yemeni Rial"/>
+            <item value="ZAR :  South African Rand"/>
+            <item value="ZMK :  Zambian Kwacha (pre-2013)"/>
+            <item value="ZMW :  Zambian Kwacha"/>
+            <item value="ZWL :  Zimbabwean Dollar"/>
+          </model>
+        </properties>
+      </component>
+      <component id="bb6af" class="javax.swing.JComboBox" binding="tocomboBox">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-3054"/>
+          <model>
+            <item value="[PLEASE SELECT TO CURRENCY...]"/>
+            <item value="AED :  United Arab Emirates Dirham"/>
+            <item value="AFN :  Afghan Afghani"/>
+            <item value="ALL :  Albanian Lek"/>
+            <item value="AMD :  Armenian Dram"/>
+            <item value="ANG :  Netherlands Antillean Guilder"/>
+            <item value="AOA :  Angolan Kwanza"/>
+            <item value="ARS :  Argentine Peso"/>
+            <item value="AUD :  Australian Dollar"/>
+            <item value="AWG :  Aruban Florin"/>
+            <item value="AZN :  Azerbaijani Manat"/>
+            <item value="BAM :  Bosnia-Herzegovina Convertible Mark    BBD :  Barbadian Dollar"/>
+            <item value="BDT :  Bangladeshi Taka"/>
+            <item value="BGN :  Bulgarian Lev"/>
+            <item value="BHD :  Bahraini Dinar"/>
+            <item value="BIF :  Burundian Franc"/>
+            <item value="BMD :  Bermudan Dollar"/>
+            <item value="BND :  Brunei Dollar"/>
+            <item value="BOB :  Bolivian Boliviano"/>
+            <item value="BRL :  Brazilian Real"/>
+            <item value="BSD :  Bahamian Dollar"/>
+            <item value="BTC :  Bitcoin"/>
+            <item value="BTN :  Bhutanese Ngultrum"/>
+            <item value="BWP :  Botswanan Pula"/>
+            <item value="BYN :  New Belarusian Ruble"/>
+            <item value="BYR :  Belarusian Ruble"/>
+            <item value="BZD :  Belize Dollar"/>
+            <item value="CAD :  Canadian Dollar"/>
+            <item value="CDF :  Congolese Franc"/>
+            <item value="CHF :  Swiss Franc"/>
+            <item value="CLF :  Chilean Unit of Account (UF)"/>
+            <item value="CLP :  Chilean Peso"/>
+            <item value="CNY :  Chinese Yuan"/>
+            <item value="COP :  Colombian Peso"/>
+            <item value="CRC :  Costa Rican Col\u00f3n"/>
+            <item value="CUC :  Cuban Convertible Peso"/>
+            <item value="CUP :  Cuban Peso"/>
+            <item value="CVE :  Cape Verdean Escudo"/>
+            <item value="CZK :  Czech Republic Koruna"/>
+            <item value="DJF :  Djiboutian Franc"/>
+            <item value="DKK :  Danish Krone"/>
+            <item value="DOP :  Dominican Peso"/>
+            <item value="DZD :  Algerian Dinar"/>
+            <item value="EGP :  Egyptian Pound"/>
+            <item value="ERN :  Eritrean Nakfa"/>
+            <item value="ETB :  Ethiopian Birr"/>
+            <item value="EUR :  Euro"/>
+            <item value="FJD :  Fijian Dollar"/>
+            <item value="FKP :  Falkland Islands Pound"/>
+            <item value="GBP :  British Pound Sterling"/>
+            <item value="GEL :  Georgian Lari"/>
+            <item value="GGP :  Guernsey Pound"/>
+            <item value="GHS :  Ghanaian Cedi"/>
+            <item value="GIP :  Gibraltar Pound"/>
+            <item value="GMD :  Gambian Dalasi"/>
+            <item value="GNF :  Guinean Franc"/>
+            <item value="GTQ :  Guatemalan Quetzal"/>
+            <item value="GYD :  Guyanaese Dollar"/>
+            <item value="HKD :  Hong Kong Dollar"/>
+            <item value="HNL :  Honduran Lempira"/>
+            <item value="HRK :  Croatian Kuna"/>
+            <item value="HTG :  Haitian Gourde"/>
+            <item value="HUF :  Hungarian Forint"/>
+            <item value="IDR :  Indonesian Rupiah"/>
+            <item value="ILS :  Israeli New Sheqel"/>
+            <item value="IMP :  Manx pound"/>
+            <item value="INR :  Indian Rupee"/>
+            <item value="IQD :  Iraqi Dinar"/>
+            <item value="IRR :  Iranian Rial"/>
+            <item value="ISK :  Icelandic Kr\u00f3na"/>
+            <item value="JEP :  Jersey Pound"/>
+            <item value="JMD :  Jamaican Dollar"/>
+            <item value="JOD :  Jordanian Dinar"/>
+            <item value="JPY :  Japanese Yen"/>
+            <item value="KES :  Kenyan Shilling"/>
+            <item value="KGS :  Kyrgystani Som"/>
+            <item value="KHR :  Cambodian Riel"/>
+            <item value="KMF :  Comorian Franc"/>
+            <item value="KPW :  North Korean Won"/>
+            <item value="KRW :  South Korean Won"/>
+            <item value="KWD :  Kuwaiti Dinar"/>
+            <item value="KYD :  Cayman Islands Dollar"/>
+            <item value="KZT :  Kazakhstani Tenge"/>
+            <item value="LAK :  Laotian Kip"/>
+            <item value="LBP :  Lebanese Pound"/>
+            <item value="LKR :  Sri Lankan Rupee"/>
+            <item value="LRD :  Liberian Dollar"/>
+            <item value="LSL :  Lesotho Loti"/>
+            <item value="LTL :  Lithuanian Litas"/>
+            <item value="LVL :  Latvian Lats"/>
+            <item value="LYD :  Libyan Dinar"/>
+            <item value="MAD :  Moroccan Dirham"/>
+            <item value="MDL :  Moldovan Leu"/>
+            <item value="MGA :  Malagasy Ariary"/>
+            <item value="MKD :  Macedonian Denar"/>
+            <item value="MMK :  Myanma Kyat"/>
+            <item value="MNT :  Mongolian Tugrik"/>
+            <item value="MOP :  Macanese Pataca"/>
+            <item value="MRO :  Mauritanian Ouguiya"/>
+            <item value="MUR :  Mauritian Rupee"/>
+            <item value="MVR :  Maldivian Rufiyaa"/>
+            <item value="MWK :  Malawian Kwacha"/>
+            <item value="MXN :  Mexican Peso"/>
+            <item value="MYR :  Malaysian Ringgit"/>
+            <item value="MZN :  Mozambican Metical"/>
+            <item value="NAD :  Namibian Dollar"/>
+            <item value="NGN :  Nigerian Naira"/>
+            <item value="NIO :  Nicaraguan C\u00f3rdoba"/>
+            <item value="NOK :  Norwegian Krone"/>
+            <item value="NPR :  Nepalese Rupee"/>
+            <item value="NZD :  New Zealand Dollar"/>
+            <item value="OMR :  Omani Rial"/>
+            <item value="PAB :  Panamanian Balboa"/>
+            <item value="PEN :  Peruvian Nuevo Sol"/>
+            <item value="PGK :  Papua New Guinean Kina"/>
+            <item value="PHP :  Philippine Peso"/>
+            <item value="PKR :  Pakistani Rupee"/>
+            <item value="PLN :  Polish Zloty"/>
+            <item value="PYG :  Paraguayan Guarani"/>
+            <item value="QAR :  Qatari Rial"/>
+            <item value="RON :  Romanian Leu"/>
+            <item value="RSD :  Serbian Dinar"/>
+            <item value="RUB :  Russian Ruble"/>
+            <item value="RWF :  Rwandan Franc"/>
+            <item value="SAR :  Saudi Riyal"/>
+            <item value="SBD :  Solomon Islands Dollar"/>
+            <item value="SCR :  Seychellois Rupee"/>
+            <item value="SDG :  Sudanese Pound"/>
+            <item value="SEK :  Swedish Krona"/>
+            <item value="SGD :  Singapore Dollar"/>
+            <item value="SHP :  Saint Helena Pound"/>
+            <item value="SLE :  Sierra Leonean Leone"/>
+            <item value="SLL :  Sierra Leonean Leone"/>
+            <item value="SOS :  Somali Shilling"/>
+            <item value="SRD :  Surinamese Dollar"/>
+            <item value="STD :  S\u00e3o Tom\u00e9 and Pr\u00edncipe Dobra"/>
+            <item value="SVC :  Salvadoran Col\u00f3n"/>
+            <item value="SYP :  Syrian Pound"/>
+            <item value="SZL :  Swazi Lilangeni"/>
+            <item value="THB :  Thai Baht"/>
+            <item value="TJS :  Tajikistani Somoni"/>
+            <item value="TMT :  Turkmenistani Manat"/>
+            <item value="TND :  Tunisian Dinar"/>
+            <item value="TOP :  Tongan Pa\u02bbanga"/>
+            <item value="TRY :  Turkish Lira"/>
+            <item value="TTD :  Trinidad and Tobago Dollar"/>
+            <item value="TWD :  New Taiwan Dollar"/>
+            <item value="TZS :  Tanzanian Shilling"/>
+            <item value="UAH :  Ukrainian Hryvnia"/>
+            <item value="UGX :  Ugandan Shilling"/>
+            <item value="USD :  United States Dollar"/>
+            <item value="UYU :  Uruguayan Peso"/>
+            <item value="UZS :  Uzbekistan Som"/>
+            <item value="VEF :  Venezuelan Bol\u00edvar Fuerte"/>
+            <item value="VES :  Sovereign Bolivar"/>
+            <item value="VND :  Vietnamese Dong"/>
+            <item value="VUV :  Vanuatu Vatu"/>
+            <item value="WST :  Samoan Tala"/>
+            <item value="XAF :  CFA Franc BEAC"/>
+            <item value="XAG :  Silver (troy ounce)"/>
+            <item value="XAU :  Gold (troy ounce)"/>
+            <item value="XCD :  East Caribbean Dollar"/>
+            <item value="XDR :  Special Drawing Rights"/>
+            <item value="XOF :  CFA Franc BCEAO"/>
+            <item value="XPF :  CFP Franc"/>
+            <item value="YER :  Yemeni Rial"/>
+            <item value="ZAR :  South African Rand"/>
+            <item value="ZMK :  Zambian Kwacha (pre-2013)"/>
+            <item value="ZMW :  Zambian Kwacha"/>
+            <item value="ZWL :  Zimbabwean Dollar"/>
+          </model>
+        </properties>
+      </component>
+      <component id="257cb" class="javax.swing.JButton" binding="CONVERTButton" default-binding="true">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-15859968"/>
+          <text value="CONVERT"/>
+        </properties>
+      </component>
+      <component id="bb62" class="javax.swing.JLabel" binding="titlelabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <foreground color="-1"/>
+          <text value="WELCOME TO CURRENCY CONVERTER..."/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
