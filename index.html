@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Currency Converter — Aryan Modi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0f172a;
+    --card:     #1e293b;
+    --input-bg: #334155;
+    --input-focus: #475569;
+    --accent:   #6366f1;
+    --accent-h: #4f46e5;
+    --text:     #f8fafc;
+    --muted:    #94a3b8;
+    --success:  #22c55e;
+    --success-bg: #14532d;
+    --error:    #f87171;
+    --border:   rgba(255,255,255,0.08);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* Glow blob */
+  body::after {
+    content: '';
+    position: fixed;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* Back to portfolio */
+  .back-link {
+    position: fixed; top: 1.25rem; left: 1.25rem;
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 2px;
+    color: var(--muted); text-decoration: none;
+    border: 1px solid var(--border); padding: 0.5rem 0.9rem;
+    border-radius: 4px; transition: all 0.2s; z-index: 10;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 2.5rem 2rem;
+    width: 100%; max-width: 460px;
+    position: relative; z-index: 1;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+  }
+
+  .card-header { text-align: center; margin-bottom: 2rem; }
+  .card-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .card-title {
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem;
+    background: linear-gradient(135deg, var(--text), var(--muted));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-subtitle { color: var(--muted); font-size: 0.85rem; }
+
+  /* Form */
+  .form-group { margin-bottom: 1.25rem; }
+  label {
+    display: block;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.5rem; font-family: var(--mono);
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input[type="number"]:focus, select:focus {
+    border-color: var(--accent);
+    background: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  }
+  input[type="number"]::placeholder { color: var(--muted); }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+  /* Currency row */
+  .currency-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0.75rem;
+    align-items: end;
+    margin-bottom: 1.25rem;
+  }
+  .swap-btn {
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 1.1rem;
+    width: 40px; height: 42px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+  .swap-btn:hover { border-color: var(--accent); color: var(--accent); transform: rotate(180deg); }
+
+  /* Select wrapper for custom arrow */
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: '▾';
+    position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%);
+    color: var(--muted); pointer-events: none; font-size: 0.8rem;
+  }
+  .select-wrap select { padding-right: 2.2rem; cursor: pointer; }
+
+  /* Convert button */
+  .convert-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 0.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    position: relative; overflow: hidden;
+  }
+  .convert-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .convert-btn:hover { background: var(--accent-h); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,102,241,0.4); }
+  .convert-btn:hover::before { opacity: 1; }
+  .convert-btn:active { transform: translateY(0); }
+  .convert-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* Spinner */
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Result */
+  .result-box {
+    margin-top: 1.25rem;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.25);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: none;
+    animation: fadeSlide 0.35s ease;
+  }
+  .result-box.error-box {
+    background: rgba(248,113,113,0.08);
+    border-color: rgba(248,113,113,0.25);
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .result-amount {
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--success); margin-bottom: 0.35rem;
+  }
+  .result-box.error-box .result-amount { color: var(--error); font-size: 1rem; }
+  .result-rate {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--muted); letter-spacing: 0.5px;
+  }
+  .result-source {
+    font-family: var(--mono); font-size: 0.58rem;
+    color: var(--muted); margin-top: 0.3rem; opacity: 0.6;
+  }
+
+  /* Popular pairs */
+  .quick-title {
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 2px; color: var(--muted);
+    text-transform: uppercase; margin: 1.5rem 0 0.6rem;
+    text-align: center;
+  }
+  .quick-pairs {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;
+  }
+  .quick-pair {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.5px;
+    background: var(--input-bg); border: 1px solid var(--border);
+    color: var(--muted); padding: 0.3rem 0.7rem; border-radius: 4px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .quick-pair:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Footer */
+  .footer {
+    margin-top: 2rem; text-align: center; position: relative; z-index: 1;
+    font-family: var(--mono); font-size: 0.62rem; color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .card { padding: 2rem 1.5rem 1.75rem; }
+    .card-title { font-size: 1.25rem; }
+    .result-amount { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="https://aum-2004.github.io/aum.github.io/" class="back-link">← Portfolio</a>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">💱</div>
+    <div class="card-title">Currency Converter</div>
+    <div class="card-subtitle">Live exchange rates · Powered by Frankfurter</div>
+  </div>
+
+  <!-- Amount -->
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" placeholder="Enter amount..." value="1" min="0" step="any"/>
+  </div>
+
+  <!-- From / Swap / To -->
+  <div class="currency-row">
+    <div class="form-group" style="margin-bottom:0">
+      <label for="from">From</label>
+      <div class="select-wrap">
+        <select id="from"><option value="USD">USD</option></select>
+      </div>
+    </div>
+
+    <button class="swap-btn" id="swap-btn" title="Swap currencies">⇄</button>
+
+    <div class="form-group" style="margin-bottom:0">
+      <label for="to">To</label>
+      <div class="select-wrap">
+        <select id="to"><option value="EUR">EUR</option></select>
+      </div>
+    </div>
+  </div>
+
+  <button class="convert-btn" id="convert-btn">
+    <div class="spinner" id="spinner"></div>
+    <span id="btn-text">Convert</span>
+  </button>
+
+  <!-- Result -->
+  <div class="result-box" id="result-box">
+    <div class="result-amount" id="result-amount"></div>
+    <div class="result-rate" id="result-rate"></div>
+    <div class="result-source">Source: Frankfurter · European Central Bank</div>
+  </div>
+
+  <!-- Quick pairs -->
+  <div class="quick-title">Quick Convert</div>
+  <div class="quick-pairs" id="quick-pairs">
+    <span class="quick-pair" data-from="USD" data-to="EUR">USD → EUR</span>
+    <span class="quick-pair" data-from="USD" data-to="GBP">USD → GBP</span>
+    <span class="quick-pair" data-from="USD" data-to="INR">USD → INR</span>
+    <span class="quick-pair" data-from="EUR" data-to="USD">EUR → USD</span>
+    <span class="quick-pair" data-from="GBP" data-to="USD">GBP → USD</span>
+    <span class="quick-pair" data-from="USD" data-to="JPY">USD → JPY</span>
+  </div>
+</div>
+
+<div class="footer">
+  Built by <a href="https://aum-2004.github.io/aum.github.io/">Aryan Modi</a> ·
+  <a href="https://github.com/aum-2004/currency-converter" target="_blank">GitHub Repo</a>
+</div>
+
+<script>
+const API = 'https://api.frankfurter.app';
+const fromSel = document.getElementById('from');
+const toSel   = document.getElementById('to');
+const amtIn   = document.getElementById('amount');
+const convBtn = document.getElementById('convert-btn');
+const spinner = document.getElementById('spinner');
+const btnText = document.getElementById('btn-text');
+const resultBox  = document.getElementById('result-box');
+const resultAmt  = document.getElementById('result-amount');
+const resultRate = document.getElementById('result-rate');
+
+// Load all currencies
+async function loadCurrencies() {
+  try {
+    const res = await fetch(`${API}/currencies`);
+    const data = await res.json();
+    const currencies = Object.entries(data); // [['AUD','Australian Dollar'], ...]
+
+    [fromSel, toSel].forEach((sel, idx) => {
+      const prev = sel.value;
+      sel.innerHTML = '';
+      currencies.forEach(([code, name]) => {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = `${code} — ${name}`;
+        sel.appendChild(opt);
+      });
+      sel.value = idx === 0 ? 'USD' : 'EUR';
+    });
+  } catch(e) {
+    console.error('Failed to load currencies', e);
+  }
+}
+
+// Convert
+async function convert() {
+  const amount = parseFloat(amtIn.value);
+  const from   = fromSel.value;
+  const to     = toSel.value;
+
+  if (!amount || amount <= 0) {
+    showError('Please enter a valid amount.');
+    return;
+  }
+  if (from === to) {
+    showResult(amount, from, to, 1);
+    return;
+  }
+
+  setLoading(true);
+  resultBox.style.display = 'none';
+
+  try {
+    const res  = await fetch(`${API}/latest?amount=${amount}&from=${from}&to=${to}`);
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    const converted = data.rates[to];
+    const rate = converted / amount;
+    showResult(converted, from, to, rate, amount);
+  } catch(e) {
+    showError('Failed to fetch rates. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+}
+
+function showResult(converted, from, to, rate, amount = 1) {
+  resultBox.className = 'result-box';
+  resultBox.style.display = 'block';
+  resultAmt.textContent = `${formatNum(converted)} ${to}`;
+  resultRate.textContent = `1 ${from} = ${formatNum(rate)} ${to}  ·  ${new Date().toLocaleTimeString()}`;
+}
+
+function showError(msg) {
+  resultBox.className = 'result-box error-box';
+  resultBox.style.display = 'block';
+  resultAmt.textContent = msg;
+  resultRate.textContent = '';
+}
+
+function setLoading(on) {
+  convBtn.disabled = on;
+  spinner.style.display = on ? 'block' : 'none';
+  btnText.textContent = on ? 'Converting...' : 'Convert';
+}
+
+function formatNum(n) {
+  return Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+}
+
+// Swap
+document.getElementById('swap-btn').addEventListener('click', () => {
+  const tmp = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value = tmp;
+  if (resultBox.style.display === 'block') convert();
+});
+
+// Quick pairs
+document.getElementById('quick-pairs').addEventListener('click', e => {
+  const pair = e.target.closest('.quick-pair');
+  if (!pair) return;
+  fromSel.value = pair.dataset.from;
+  toSel.value   = pair.dataset.to;
+  amtIn.value   = 1;
+  convert();
+});
+
+// Convert on Enter
+amtIn.addEventListener('keydown', e => { if (e.key === 'Enter') convert(); });
+convBtn.addEventListener('click', convert);
+
+// Init
+loadCurrencies().then(() => convert());
+</script>
+</body>
+</html>
