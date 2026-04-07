@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 public class CCGUI extends JFrame {
@@ -272,7 +273,6 @@ public class CCGUI extends JFrame {
         "YER - Yemeni Rial",
         "ZMW - Zambian Kwacha"
     };
-
     public CCGUI() {
         initComponents();
         
@@ -912,7 +912,9 @@ public class CCGUI extends JFrame {
         combo.setBorder(BorderFactory.createEmptyBorder());
         combo.setMaximumSize(new Dimension(180, 45));
         combo.setPreferredSize(new Dimension(180, 45));
-        combo.setFocusable(false);
+        combo.setEditable(false);
+        combo.setFocusable(true);
+        combo.setRequestFocusEnabled(true);
         
         combo.setRenderer(new DefaultListCellRenderer() {
             @Override
@@ -939,8 +941,64 @@ public class CCGUI extends JFrame {
             popupMenu.setBorder(BorderFactory.createLineBorder(INPUT_BG, 1));
             popupMenu.setBackground(CARD_COLOR);
         }
-        
+
         return combo;
+    }
+
+    private int findCurrencyMatch(String[] items, String query) {
+        String normalizedQuery = normalizeCurrencySearchText(query);
+        if (normalizedQuery.isEmpty()) {
+            return -1;
+        }
+
+        int partialMatch = -1;
+        for (int i = 0; i < items.length; i++) {
+            String item = items[i];
+            if (item.startsWith("Select ")) {
+                continue;
+            }
+
+            String code = extractCurrencyCode(item);
+            String name = extractCurrencyName(item);
+            String normalizedCode = normalizeCurrencySearchText(code);
+            String normalizedName = normalizeCurrencySearchText(name);
+            String normalizedItem = normalizeCurrencySearchText(item);
+
+            if (normalizedCode.equals(normalizedQuery) || normalizedCode.startsWith(normalizedQuery)) {
+                return i;
+            }
+
+            if (normalizedName.startsWith(normalizedQuery) || normalizedName.contains(normalizedQuery) || normalizedItem.contains(normalizedQuery)) {
+                if (partialMatch < 0) {
+                    partialMatch = i;
+                }
+            }
+        }
+
+        return partialMatch;
+    }
+
+    private String extractCurrencyCode(String item) {
+        int separatorIndex = item.indexOf(" - ");
+        if (separatorIndex > 0) {
+            return item.substring(0, separatorIndex);
+        }
+        if (item.length() >= 3) {
+            return item.substring(0, 3);
+        }
+        return item;
+    }
+
+    private String extractCurrencyName(String item) {
+        int separatorIndex = item.indexOf(" - ");
+        if (separatorIndex > 0 && separatorIndex + 3 < item.length()) {
+            return item.substring(separatorIndex + 3);
+        }
+        return item;
+    }
+
+    private String normalizeCurrencySearchText(String text) {
+        return text.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "");
     }
 
     // Custom ComboBox UI for modern styling
